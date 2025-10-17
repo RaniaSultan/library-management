@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\ApiController;
 // Authentication routes
 Route::get('/login', function () {
     return view('auth.login');
@@ -76,4 +76,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+    
 });
+
+   

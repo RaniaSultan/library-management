@@ -14,6 +14,9 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
 Route::post('/login', [AuthController::class, 'webLogin'])->name('login.post');
 Route::post('/register', [AuthController::class, 'webRegister'])->name('register.post');
 Route::post('/logout', [AuthController::class, 'webLogout'])->name('logout');
@@ -48,4 +51,29 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/borrow-book', [FrontendController::class, 'borrowBookForm'])->name('borrow.book.form');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "api" middleware group. Make something great!
+|
+*/
+
+// Public API routes
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+// Protected API routes (require authentication)
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 });

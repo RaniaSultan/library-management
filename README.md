@@ -41,7 +41,7 @@ php artisan serve
 Visit: http://localhost:8000
 
 ## Default Login
-- **Admin:** admin@library.com / password
+- **Admin:** admin@library.com / admin123
 - **Users:** Register new account
 
 ## API Endpoints
